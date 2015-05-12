@@ -9,7 +9,7 @@ CREATE TABLE users(
   created_at timestamptz DEFAULT localtimestamp not null
 );
 
-CREATE TABLE companies(
+CREATE TABLE locations(
   id serial primary key not null,
   name varchar(100) not null,
   created_at timestamptz DEFAULT localtimestamp not null
