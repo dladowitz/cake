@@ -23,9 +23,9 @@ CREATE TABLE deals(
   created_at timestamptz DEFAULT localtimestamp not null
 );
 
-CREATE TABLE registered_deals(
+CREATE TABLE location_signups(
   id serial primary key not null,
   user_id integer not null,
-  deal_id integer not null,
+  location_id integer not null,
   created_at timestamptz DEFAULT localtimestamp not null
 );

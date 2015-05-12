@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET locations page. */
+/* GET locations index page. */
 router.get('/', function(req, res, next) {
   // note the 'req added to db.query'
   req.db.query('SELECT * FROM locations;', [], function(err, result){
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-// GET location page
+// GET location show page
 router.get('/:id', function(req, res, next){
   var location_id = req.params["id"];
   req.db.query('SELECT * FROM locations WHERE id = $1;', [location_id], function(err, result){
@@ -22,11 +22,11 @@ router.get('/:id', function(req, res, next){
       err.explanation = "Not able to find location";
       response.status(500).send(err);
     } else {
+      console.log("location: ")
       console.log(result.rows[0])
       res.render('locations/show', { location: result.rows[0] });
     }
   });
 });
-
 
 module.exports = router;

@@ -1,4 +1,6 @@
 <h1>Sign up for deal from {{location.name}}</h1>
-<input type="email" name="name" placeholder="email address">
-<input type="date" name="name" placeholder="birthday">
-<input type="submit" name="name" value="">
+<form class="" action="/location_signups/{{location.id}}" method="post">
+  <input type="email" name="email" placeholder="email address">
+  <input type="date" name="birthday" placeholder="birthday">
+  <input type="submit" name="name" value="Sign Up">
+</form>

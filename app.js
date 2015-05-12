@@ -1,3 +1,4 @@
+// modules
 var express      = require('express');
 var path         = require('path');
 var favicon      = require('serve-favicon');
@@ -7,25 +8,29 @@ var bodyParser   = require('body-parser');
 var pg           = require('pg');
 
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var locations = require('./routes/locations')
+// route definitions
+var routes           = require('./routes/index');
+var users            = require('./routes/users');
+var locations        = require('./routes/locations')
+var location_signups = require('./routes/location_signups')
 
-var app = express();
 
 // database connection
 var conString = 'postgres://localhost:5432/cake'
 var db;
-
 pg.connect(conString, function(err, client){
   db = client;
 })
+
+// app setup
+var app = express();
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// middleware
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -41,9 +46,13 @@ app.use(function(req,res,next){
     next();
 });
 
+
+// route setup
 app.use('/', routes);
 app.use('/users', users);
 app.use('/locations', locations);
+app.use('/location_signups', location_signups)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,6 +60,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handlers
 
