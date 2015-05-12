@@ -1,6 +1,6 @@
 <h1>All Locations</h1>
   <ul>
     {{#each locations}}
-      <li>{{this.name}}</li>
+      <li><a href="/locations/{{this.id}}">{{this.name}}</a></li>
     {{/each}}
   </ul>
