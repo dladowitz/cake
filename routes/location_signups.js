@@ -1,5 +1,13 @@
-var express = require('express')
-var router = express.Router()
+// environment variables
+var mandrillKey = process.env["MANDRILL_KEY"];
+
+var express     = require('express')
+var fs          = require('fs')
+var router      = express.Router()
+var mandrill     = require('mandrill-api/mandrill');
+
+//// Mandril TODO: move to mailer.js file
+var mandrill_client = new mandrill.Mandrill(mandrillKey);
 
 
 // POST location_signups show page
@@ -26,7 +34,10 @@ router.post('/:id', function(req, res, next){
           console.log("user_id: " + user.id)
           console.log("location_id: " + locationId)
           console.log(("--------\n"))
+
           res.render("location_signups/confirmation")
+
+          locationSignupConfirmationEmail(user.email)
         }
       });
 
@@ -46,6 +57,7 @@ router.post('/:id', function(req, res, next){
             console.log("birtday:" + user.birthday)
             console.log(("--------\n"))
 
+            // Do this instead
             // createLocationSignup(params, function(err, result){
             //   if err
             //   otherwise yay
@@ -59,7 +71,10 @@ router.post('/:id', function(req, res, next){
                 console.log("user_id: " + user.id)
                 console.log("location_id: " + locationId)
                 console.log(("--------\n"))
+
                 res.render("location_signups/confirmation")
+
+                locationSignupConfirmationEmail(user.email)
               }
             });
           })
@@ -70,6 +85,38 @@ router.post('/:id', function(req, res, next){
   });
 });
 
+function locationSignupConfirmationEmail(recipient){
+  var messageText = ""
+
+  fs.readFile(__dirname + "/../mail_templates/location_signup_confirmation_email.html", function(error, data) {
+    if(error){
+      console.log(error)
+    } else {
+      messageText = data.toString()
+      console.log("Confirmation Email Sent to: " + recipient)
+      console.log(messageText);
+
+      var message = {
+        "html": messageText,
+        "subject": "Thanks for Signing Up with Cake",
+        "from_email": "no-reply@cake.com",
+        "from_name": "Cake",
+        "to": [{email: recipient}]
+      }
+      sendEmail(message)
+    }
+  });
+ }
+
+ // send mail through mandrill
+ function sendEmail(message){
+   mandrill_client.messages.send({"message": message, "async": true }, function(result) {
+       console.log(result);
+   }, function(e) {
+       // Mandrill returns the error as an object with name and message keys
+       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+   });
+  }
 // Tried creating a function, bad things happened.
 // This is what I get for trying to be DRY
 // function createLocationSignup(req, location_id, user, callback){

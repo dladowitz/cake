@@ -1,5 +1,5 @@
+// environment variables
 var conString   = process.env["DATABASE_URL"];
-var mandrillKey = process.env["MANDRILL_KEY"];
 
 // modules
 var express      = require('express');
@@ -86,6 +86,8 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
 
 
 module.exports = app;
