@@ -1,3 +1,6 @@
+var conString   = process.env["DATABASE_URL"];
+var mandrillKey = process.env["MANDRILL_KEY"];
+
 // modules
 var express      = require('express');
 var path         = require('path');
@@ -16,7 +19,6 @@ var location_signups = require('./routes/location_signups')
 
 
 // database connection
-var conString = 'postgres://localhost:5432/cake'
 var db;
 pg.connect(conString, function(err, client){
   db = client;
