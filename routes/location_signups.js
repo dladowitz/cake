@@ -46,6 +46,10 @@ router.post('/:id', function(req, res, next){
             console.log("birtday:" + user.birthday)
             console.log(("--------\n"))
 
+            // createLocationSignup(params, function(err, result){
+            //   if err
+            //   otherwise yay
+            // })
             req.db.query('INSERT INTO location_signups(location_id, user_id) VALUES($1, $2);', [locationId, user.id], function(err, result){
               if (err) {
                 err.explanation = "Not able to create location signup";
@@ -68,7 +72,7 @@ router.post('/:id', function(req, res, next){
 
 // Tried creating a function, bad things happened.
 // This is what I get for trying to be DRY
-// function createLocationSignup(req, location_id, user){
+// function createLocationSignup(req, location_id, user, callback){
 //   req.db.query('INSERT INTO location_signups(location_id, user_id) VALUES($1, $2);', [location_id, user.id], function(err, result){
 //     if (err) {
 //       err.explanation = "Not able to create location signup";
@@ -76,6 +80,7 @@ router.post('/:id', function(req, res, next){
 //     } else {
 //       console.log("-- Location Signup Created --\n")
 //     }
+        // callback(err, result)
 //   });
 // }
 module.exports = router;

@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
       err.explanation = "Not able to select from Locations";
       response.status(500).send(err);
     } else {
+
       res.render('locations/index', { locations: result.rows });
     }
   });
