@@ -1,3 +1,6 @@
+-- to create schema run:
+-- cat schema.sql | psql
+
 CREATE DATABASE cake;
 
 \c cake;
@@ -18,7 +21,9 @@ CREATE TABLE locations(
 CREATE TABLE deals(
   id serial primary key not null,
   name varchar(100) not null,
-  company_id integer not null,
+  location_id integer not null,
+  birthday_deal boolean DEFAULT false not null,
+  active boolean DEFAULT true not null,
   message text not null,
   created_at timestamptz DEFAULT localtimestamp not null
 );
