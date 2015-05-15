@@ -1,5 +1,5 @@
 -- connect to cake database
-\c cake;
+-- \c cake;
 
 -- //create locations
 INSERT INTO locations(name) values('Tradecraft');

@@ -1,6 +1,11 @@
 # Welcome to cake
 
-## Debug Mode
+## Run Locally
+Nodemon runs so you don't have to keep restarting the server
+
+* To start run `foreman start --procfile Procfile-Local`
+
+## Debug Mode (localy)
 Debug mode is a bit quirky.
 
 * To start run `foreman start --procfile Procfile-Debug`
