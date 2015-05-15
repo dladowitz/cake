@@ -1,9 +1,9 @@
 -- to create schema run:
 -- cat schema.sql | psql
 
-CREATE DATABASE cake;
-
-\c cake;
+-- CREATE DATABASE cake;
+--
+-- \c cake;
 
 CREATE TABLE users(
   id serial primary key not null,

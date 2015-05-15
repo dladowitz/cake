@@ -1,1 +1,1 @@
-web: node debug ./bin/www
+web: nodemon debug ./bin/www

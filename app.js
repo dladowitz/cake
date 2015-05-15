@@ -32,6 +32,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// development mode is default when nothing is set
+// app.set('env', 'production')
+
 // middleware
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

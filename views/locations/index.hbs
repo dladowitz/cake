@@ -1,6 +1,8 @@
-<h1>All Locations</h1>
-  <ul>
-    {{#each locations}}
-      <li><a href="/locations/{{this.id}}">{{this.name}}</a></li>
-    {{/each}}
-  </ul>
+<div id="locations-index">
+  <h1 class="header">Locations</h1>
+    <ul class="location-list">
+      {{#each locations}}
+        <li><a href="/locations/{{this.id}}">{{this.name}}</a></li>
+      {{/each}}
+    </ul>
+</div>

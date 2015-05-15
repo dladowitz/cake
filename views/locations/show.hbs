@@ -1,6 +1,47 @@
-<h1>Sign up for deal from {{location.name}}</h1>
+<div id="location-show">
+  <!-- Logo -->
+  <div class="logo">
+    <img src="/images/cake-logo.png" width="150" height="150">
+  </div>
+
+
+  <div class="content">
+    <h1 class="location">{{location.name}}</h1>
+    <h3 class="deal">wants to give you something <span class="free">free</span> on your birthday</h3>
+
+    <form class="location_signup" action="/location_signups/{{location.id}}" method="post">
+      <div class="form-group">
+        <label for="email-input">Email Address</label>
+        <span class="fa fa-envelope"></span>
+        <input name="email" type="email" class="form-control" id="email-input" placeholder="tony.stark@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="birthday-input">Birthday</label>
+        <span class="fa fa-birthday-cake"></span>
+        <input name="birthday" type="date" class="form-control" id="birthday-input" placeholder="01/05/1970">
+      </div>
+      <button type="submit" class="btn btn-info">Get Free Stuff</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>Sign up for deal from {{location.name}}</h1>
 <form class="" action="/location_signups/{{location.id}}" method="post">
   <input type="email" name="email" placeholder="email address">
   <input type="date" name="birthday" placeholder="birthday">
   <input type="submit" name="name" value="Sign Up">
-</form>
+</form> -->

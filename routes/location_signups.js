@@ -35,7 +35,7 @@ router.post('/:id', function(req, res, next){
           console.log("location_id: " + locationId)
           console.log(("--------\n"))
 
-          res.render("location_signups/confirmation")
+          res.render("location_signups/confirmation", { email: user.email});
 
           locationSignupConfirmationEmail(user.email)
         }
@@ -72,7 +72,7 @@ router.post('/:id', function(req, res, next){
                 console.log("location_id: " + locationId)
                 console.log(("--------\n"))
 
-                res.render("location_signups/confirmation")
+                res.render("location_signups/confirmation", { email: user.email});
 
                 locationSignupConfirmationEmail(user.email)
               }
