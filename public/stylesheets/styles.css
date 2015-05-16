@@ -38,7 +38,7 @@ a {
 /*location show page*/
 #location-show .logo {
   position: relative;
-  left: 25%;
+  left: 35%;
 }
 
 #location-show .content {
@@ -47,11 +47,12 @@ a {
 
 #location-show .location {
   color: white;
+  margin-top: 0px;
 }
 
 #location-show .deal {
   position: relative;
-  bottom: 20px;
+  bottom: 10px;
 }
 
 #location-show span {
