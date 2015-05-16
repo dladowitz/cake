@@ -66,8 +66,15 @@ a {
 
 
 /*location signups confirmation page*/
+#location-signups-confirmation .row {
+  border-bottom: 5px solid;
+}
+
+#location-signups-confirmation .row:nth-child(2){
+  border-top: 5px solid
+}
+
 #location-signups-confirmation {
-  /*text-align: center;*/
   margin-top: 30px;
 }
 
@@ -90,12 +97,40 @@ a {
   margin-bottom: 10px;
 }
 
+#location-signups-confirmation .heading {
+  margin-bottom: 20px;
+}
+
 #location-signups-confirmation .business .description {
-  background-color: black;
-  padding: 10px;
+  background-color: rgba(0, 0, 0, .55);
+  padding: 15px;
+  min-height: 100px;
 }
 
 #location-signups-confirmation .business .title {
-  font-size: 18px;
+  font-size: 30px;
   color: white;
 }
+
+#location-signups-confirmation .business .image {
+  min-height: 100px;
+  min-width: 100%;
+}
+
+
+
+
+
+
+
+/*#location-signups-confirmation .business .description {
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 10px;
+  position: relative;
+  top: 58px;
+  z-index: 10;
+}*/
+
+/*background-image: url(http://tripwhat.com/img/travel/item:-9223372036852163167:photos/831eeca229abe5ba7e4a421bfd7aff50-450-190);
+opacity: .5;
+}*/
