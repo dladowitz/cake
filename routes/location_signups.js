@@ -11,8 +11,13 @@ var mandrill_client = new mandrill.Mandrill(mandrillKey);
 
 
 // only for testing - delete
-router.get('/:id', function(req, res, next){
-  res.render("location_signups/confirmation", { email: 'david@ladowitz.com'});
+router.get('/confirmation', function(req, res, next){
+  req.db.query('Select * From locations;', [], function(err, result){
+    var locations = result.rows
+    res.render("location_signups/confirmation", { locations: locations, email: 'david@ladowitz.com'});
+  })
+
+
 })
 
 // POST location_signups show page
@@ -40,7 +45,7 @@ router.post('/:id', function(req, res, next){
           console.log("location_id: " + locationId)
           console.log(("--------\n"))
 
-          res.render("location_signups/confirmation", { email: user.email});
+          res.redirect("location_signups/confirmation?email=" + user.email);
 
           locationSignupConfirmationEmail(user.email)
         }

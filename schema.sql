@@ -1,9 +1,8 @@
--- to create schema run:
--- cat schema.sql | psql
+-- Locally (if database is already created):
+-- psql <databasename> -f schema.sql
 
--- CREATE DATABASE cake;
---
--- \c cake;
+-- On heroku there is only one database
+-- cat schema.sql | heroku pg:psql
 
 CREATE TABLE users(
   id serial primary key not null,
@@ -15,6 +14,7 @@ CREATE TABLE users(
 CREATE TABLE locations(
   id serial primary key not null,
   name varchar(100) not null,
+  img_url varchar(300),
   created_at timestamptz DEFAULT localtimestamp not null
 );
 
