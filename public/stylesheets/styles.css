@@ -67,10 +67,35 @@ a {
 
 /*location signups confirmation page*/
 #location-signups-confirmation {
-  text-align: center;
-  margin-top: 100px;
+  /*text-align: center;*/
+  margin-top: 30px;
 }
 
 #location-signups-confirmation span {
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+#location-signups-confirmation span.icon {
+  font-size: 34px;
   color: #50BBDC;
+}
+
+#location-signups-confirmation .thanks {
+  margin-bottom: 10px;
+  color: white;
+}
+
+#location-signups-confirmation hr {
+  margin-bottom: 10px;
+}
+
+#location-signups-confirmation .business .description {
+  background-color: black;
+  padding: 10px;
+}
+
+#location-signups-confirmation .business .title {
+  font-size: 18px;
+  color: white;
 }

@@ -10,6 +10,11 @@ var mandrill     = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill(mandrillKey);
 
 
+// only for testing - delete
+router.get('/:id', function(req, res, next){
+  res.render("location_signups/confirmation", { email: 'david@ladowitz.com'});
+})
+
 // POST location_signups show page
 router.post('/:id', function(req, res, next){
   var locationId = req.params["id"]
@@ -103,7 +108,8 @@ function locationSignupConfirmationEmail(recipient){
         "from_name": "Cake",
         "to": [{email: recipient}]
       }
-      sendEmail(message)
+      // <<<<<<<<uncomment>>>>>>>>>>>>>>>
+      // sendEmail(message)
     }
   });
  }
