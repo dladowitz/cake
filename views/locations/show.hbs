@@ -9,6 +9,7 @@
     <h2 class="location">{{location.name}}</h2>
     <h5 class="deal">wants to give you something <span class="free">free</span> on your birthday</h5>
 
+
     <form class="location_signup" action="/location_signups/{{location.id}}" method="post">
       <div class="form-group">
         <label for="email-input">Email Address</label>
@@ -23,6 +24,10 @@
       <button type="submit" class="btn btn-info">Get Free Stuff</button>
     </form>
   </div>
+
+  <div class="image" style="background-image: url({{location.img_url}})">
+  </div>
+
 </div>
 
 

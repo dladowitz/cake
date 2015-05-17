@@ -64,6 +64,16 @@ a {
   color: #50BBDC;
 }
 
+#location-show .image {
+  height: 250px;
+  margin-top: 40px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background-size: cover;
+}
+
 
 /*location signups confirmation page*/
 #location-signups-confirmation .row {
