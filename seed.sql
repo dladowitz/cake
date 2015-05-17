@@ -2,7 +2,7 @@
 -- Locally (if database is already created):
 -- psql <databasename> -f seed.sql
 
--- On heroku there is only one database
+-- On heroku there is only one database present
 -- cat seed.sql | heroku pg:psql
 
 -- //create locations
