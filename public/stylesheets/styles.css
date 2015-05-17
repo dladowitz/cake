@@ -67,8 +67,8 @@ a {
 #location-show .image {
   height: 200px;
   margin-top: 40px;
-  position: absolute;
-  bottom: 0px;
+  position: fixed;
+  /*bottom: 0px;*/
   left: 0px;
   width: 100%;
   background-size: cover;
