@@ -111,8 +111,8 @@ function locationSignupConfirmationEmail(recipient){
         "from_name": "Cake",
         "to": [{email: recipient}]
       }
-      // <<<<<<<<uncomment>>>>>>>>>>>>>>>
-      // sendEmail(message)
+
+      sendEmail(message)
     }
   });
  }
