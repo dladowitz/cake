@@ -43,7 +43,7 @@ router.post('/:id', function(req, res, next){
           console.log("location_id: " + locationId)
           console.log(("--------\n"))
 
-          res.redirect("location_signups/confirmation");
+          res.redirect("confirmation");
 
           locationSignupConfirmationEmail(user.email)
         }
@@ -80,7 +80,7 @@ router.post('/:id', function(req, res, next){
                 console.log("location_id: " + locationId)
                 console.log(("--------\n"))
 
-                res.redirect("location_signups/confirmation");
+                res.redirect("confirmation");
 
                 locationSignupConfirmationEmail(user.email)
               }
