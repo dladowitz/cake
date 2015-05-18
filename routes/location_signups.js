@@ -1,10 +1,38 @@
 // environment variables
-var mandrillKey = process.env["MANDRILL_KEY"];
+var mandrillKey    = process.env["MANDRILL_KEY"]
 
-var express     = require('express')
-var fs          = require('fs')
-var router      = express.Router()
-var mandrill     = require('mandrill-api/mandrill');
+var express        = require('express')
+var fs             = require('fs')
+var router         = express.Router()
+var mandrill       = require('mandrill-api/mandrill')
+var path           = require('path')
+var templatesDir   = path.join(__dirname, 'templates')
+var emailTemplates = require('email-templates')
+var nodemailer     = require('nodemailer');
+
+
+
+
+var transporter = nodemailer.createTransport({
+  port: 1025,
+  ignoreTLS: true,
+})
+
+
+// emailTemplates(templatesDir, function(err, template){
+//   var locals = { hero: "Thor" }
+//
+//   template('welcome', locals, function(err, html, text){
+//     console.log("HTML:")
+//     console.log(html)
+//     console.log("TEXT:")
+//     console.log(text)
+//   })
+//
+// })
+
+
+
 
 //// Mandril TODO: move to mailer.js file
 var mandrill_client = new mandrill.Mandrill(mandrillKey);
@@ -45,7 +73,25 @@ router.post('/:id', function(req, res, next){
 
           res.redirect("confirmation");
 
-          locationSignupConfirmationEmail(user.email)
+          // setup e-mail data with unicode symbols
+          var mailOptions = {
+              from: 'Fred Foo ✔ <foo@blurdybloop.com>', // sender address
+              to: 'david@tradecrafted.com, david@ladowitz.com', // list of receivers
+              subject: 'Hello ✔', // Subject line
+              text: 'Hello world ✔', // plaintext body
+              html: '<b>Hello world ✔</b>' // html body
+          };
+
+          // send mail with defined transport object
+          transporter.sendMail(mailOptions, function(error, info){
+              if(error){
+                  return console.log(error);
+              }
+              console.log('Message sent: ' + info.response);
+
+          });
+          // emailTemplates
+          // locationSignupConfirmationEmail(user.email)
         }
       });
 
@@ -81,8 +127,8 @@ router.post('/:id', function(req, res, next){
                 console.log(("--------\n"))
 
                 res.redirect("confirmation");
-
-                locationSignupConfirmationEmail(user.email)
+                emailTemplates
+                // locationSignupConfirmationEmail(user.email)
               }
             });
           })
