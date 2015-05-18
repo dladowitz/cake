@@ -4,7 +4,6 @@
  * Module dependencies.
  */
 var app = require('../app');
-
 // This thing breaks node debugger. It's evil. Don't uncomment.
 // var debug = require('debug')('cake:server');
 

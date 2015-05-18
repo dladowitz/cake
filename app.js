@@ -32,8 +32,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// development mode is default when nothing is set
-// app.set('env', 'production')
+// set environment mode. Default is development when nothing is set.
+if(process.env.MODE){
+  app.set('env', process.env.MODE)
+}
 
 // middleware
 // uncomment after placing your favicon in /public
