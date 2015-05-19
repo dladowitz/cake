@@ -10,7 +10,7 @@ var nodemailer        = require('nodemailer');
 var express        = require('express')
 var fs             = require('fs')
 var router         = express.Router()
-// var mandrill       = require('mandrill-api/mandrill')
+var mandrill       = require('mandrill-api/mandrill')
 var path           = require('path')
 var templatesDir   = path.join(__dirname, 'templates')
 var emailTemplates = require('email-templates')
@@ -33,7 +33,7 @@ var emailTemplates = require('email-templates')
 
 
 //// Mandril TODO: move to mailer.js file
-// var mandrill_client = new mandrill.Mandrill(mandrillKey);
+var mandrill_client = new mandrill.Mandrill(mandrillKey);
 
 
 // only for testing - delete
@@ -120,79 +120,56 @@ router.post('/:id', function(req, res, next){
 });
 
 function locationSignupConfirmationEmail(recipient){
-
-  // setup e-mail data with unicode symbols
   var mailOptions = {
       from: 'Fred Foo ✔ <foo@blurdybloop.com>', // sender address
-      to: "person", // list of receivers
+      to: recipient, // list of receivers
       subject: 'Hello ✔', // Subject line
       text: 'Hello world ✔', // plaintext body
       html: '<b>Hello world ✔</b>' // html body
   };
 
+  if(process.env.MODE === "mailer-test"){
+    console.log("--- mailer-test mode detected --")
+    console.log("Sending message via Nodemailer. Make sure 'maildev' is running and go to http://localhost:1080/")
 
-  if(process.env.MODE === "production"){
-    // Note errors from mandrillTransport are pretty sparse. Better to use the Mandril package
-    console.log("Production mode detected. Sending message via Mandrill.")
-    var transporter = nodemailer.createTransport(mandrillTransport({
-      auth: {
-        apiKey: mandrillKey
-      }
-    }));
-
-    transporter.sendMail(mailOptions, function(error, info) {
-      if(error){
-          return console.log(error);
-      }
-      console.log('Message Sent');
-      console.log('Message ID: ' + info.messageId);
-    });
-
-  }else if(process.env.MODE === "development"){
-    console.log("Development mode detected. Sending message via Nodemailer.")
     var transporter = nodemailer.createTransport({
       port: 1025,
       ignoreTLS: true,
     })
 
-
-    // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
             return console.log(error);
         }
         console.log('Message sent: ' + info.response);
     });
-  }else{
-    console.log("Not in dev or prod mode. Not sending message.")
+
+  } else {
+    console.log("Sending message via Mandrill.")
+
+    var messageText = ""
+
+    fs.readFile(__dirname + "/../mail_templates/location_signup_confirmation_email.html", function(error, data) {
+      if(error){
+        console.log(error)
+      } else {
+        messageText = data.toString()
+        console.log("Confirmation Email Sent to: " + recipient)
+        console.log(messageText);
+
+        var message = {
+          "html": messageText,
+          "subject": "Thanks for Signing Up with Cake",
+          "from_email": "no-reply@cake.com",
+          "from_name": "Cake",
+          "to": [{email: recipient}]
+        }
+
+        sendEmail(message)
+      }
+    });
   }
-
-
-
-
-
-  // var messageText = ""
-  //
-  // fs.readFile(__dirname + "/../mail_templates/location_signup_confirmation_email.html", function(error, data) {
-  //   if(error){
-  //     console.log(error)
-  //   } else {
-  //     messageText = data.toString()
-  //     console.log("Confirmation Email Sent to: " + recipient)
-  //     console.log(messageText);
-  //
-  //     var message = {
-  //       "html": messageText,
-  //       "subject": "Thanks for Signing Up with Cake",
-  //       "from_email": "no-reply@cake.com",
-  //       "from_name": "Cake",
-  //       "to": [{email: recipient}]
-  //     }
-  //
-  //     sendEmail(message)
-  //   }
-  // });
- }
+}
 
  // send mail through mandrill
  function sendEmail(message){
