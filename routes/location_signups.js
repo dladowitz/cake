@@ -15,8 +15,6 @@ var path           = require('path')
 var templatesDir   = path.join(__dirname, 'templates')
 var emailTemplates = require('email-templates')
 
-
-
 // emailTemplates(templatesDir, function(err, template){
 //   var locals = { hero: "Thor" }
 //
@@ -28,8 +26,6 @@ var emailTemplates = require('email-templates')
 //   })
 //
 // })
-
-
 
 
 //// Mandril TODO: move to mailer.js file
