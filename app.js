@@ -21,7 +21,13 @@ var location_signups = require('./routes/location_signups')
 // database connection
 var db;
 pg.connect(conString, function(err, client){
-  db = client;
+  if(err){
+    console.log("!!!!!!! Problem connecting to database!!!!!!!")
+    console.log("Maybe the DB isn't running? Error: " + err)
+  } else {
+    console.log("Database connected to: " + conString )
+    db = client;
+  }
 })
 
 // app setup

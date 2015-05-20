@@ -1,3 +1,5 @@
+//http://webapplog.com/test-driven-development-in-node-js-with-mocha/
+
 var request = require('superagent');
 var expect  = require('expect.js');
 
@@ -10,14 +12,14 @@ describe('locations', function(){
     console.log("Run before each individual spec")
   })
 
-  it('has /locations in page', function(){
-    request.get('localhost:3000/place').end(function(res){
-      // I should break things
-      // expect(res).to.exist
-      // expect(res.status).to.equal(200)
-      // expects(rest.body).to.contain('All Locations')
-      // console.log(other)
-      expect(200).to.equal(300)
+  it("has /locations", function(done){
+    request.get('localhost:3000').end(function(res){
+      console.log("<<<<<<<<<<<<<<<<<<<<<<<")
+      console.log("Response: " + res)
+      expect(res).to.exist
+      expect(res.status).to.equal(200)
+      expect(res.body).to.contain('All Locations')
+      done();
     })
   })
 })
