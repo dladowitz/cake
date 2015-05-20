@@ -1,5 +1,6 @@
 ////http://webapplog.com/test-driven-development-in-node-js-with-mocha/
-//
+// Not working for some reason. Not sure why. Moving to Chai and Request
+
 //var request = require('superagent');
 //var expect  = require('expect.js');
 //

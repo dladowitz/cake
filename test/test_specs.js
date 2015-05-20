@@ -40,7 +40,6 @@ describe('location_signups confirmation page', function(){
 })
 
 
-//
 describe('location_signup create page', function(){
   it('POST /locations/1 should redirect', function (done) {
     request.post({url:'http://localhost:3000/location_signups/1', form: {email:'david@ladowitz.com', birthday: ''}}, function (err, res, body){
