@@ -22,6 +22,10 @@ router.get('/:id', function(req, res, next){
       err.explanation = "Not able to find location";
       response.status(500).send(err);
     } else {
+
+      //setting so that it shows up in mocha test. Not working for some reason
+      res.test = "This is a test"
+
       console.log("location: ")
       console.log(result.rows[0])
       res.render('locations/show', { location: result.rows[0] });
