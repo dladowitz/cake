@@ -3,18 +3,34 @@
 
 
 //Not really working http://chaijs.com/plugins/chai-jq
-//var expect    = require("chai");
+
+//var jsdom   = require("mocha-jsdom");
+//var chai    = require("chai");
 //var plugin  = require("chai-jq");
-//expect.use(plugin);
+//var request = require('request');
+//
+//chai.use(plugin);
+//expect = chai.expect
 //
 //describe('locations index page', function(){
-//  beforeEach(function(){
-//    console.log("Run before each individual spec")
-//  })
+//  var $
+//  jsdom()
+//
+//  //before(function(){
+//  //  var $ = require("jquery");
+//  //})
+//
+//  //beforeEach(function(){
+//  //  console.log("Run before each individual spec")
+//  //var $ = require("jquery");
+//  //})
 //
 //  it('GET /locations should exist', function (done) {
 //    request.get('http://localhost:3000/locations', function (err, res, body){
-//      expect(res.body).to.have.$attr("class", "location-list")
+//      var $ = require("jquery");
+//      var $bdy = $(res.body)
+//      console.log($bdy)
+//      expect($bdy).have.html("<ul>")
 //      done();
 //    });
 //  });
