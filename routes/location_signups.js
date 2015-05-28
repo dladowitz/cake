@@ -11,6 +11,9 @@ var express        = require('express')
 var fs             = require('fs')
 var router         = express.Router()
 var mandrill       = require('mandrill-api/mandrill')
+
+
+// mailer configs
 var path           = require('path')
 var templatesDir   = path.join(__dirname, 'templates')
 var emailTemplates = require('email-templates')
@@ -51,6 +54,7 @@ router.post('/:id', function(req, res, next){
   // What is the best way to handle multiple sql queries? This seems, ungood.
   req.db.query('Select * FROM users WHERE email = $1;', [req.body["email"]], function(err, result){
 
+    // When email address is already in the system
     if(result.rows.length > 0){
       user = result.rows[0]
       console.log(user.email + " is already in the system")
@@ -72,6 +76,7 @@ router.post('/:id', function(req, res, next){
         }
       });
 
+    // When email is not associated with a user
     } else {
       console.log("New User...Creating....\n")
 
@@ -104,8 +109,8 @@ router.post('/:id', function(req, res, next){
                 console.log(("--------\n"))
 
                 res.redirect("confirmation");
-                emailTemplates
-                // locationSignupConfirmationEmail(user.email)
+                // emailTemplates
+                locationSignupConfirmationEmail(user.email)
               }
             });
           })
@@ -135,7 +140,7 @@ function locationSignupConfirmationEmail(recipient){
 
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
-            return console.log(error);
+          return console.log(error);
         }
         console.log('Message sent: ' + info.response);
     });
